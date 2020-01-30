@@ -1,0 +1,25 @@
+name: Lab 1
+
+on:
+  push:
+    branches:
+      - master
+      - ci
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  issuenumber-job:
+    runs-on: ubuntu-latest
+    name: Check Commit Messages
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 9
+        submodules: false
+    - uses: RobertoPrevato/GitHubActionLabTS1@master
+      id: example
+#    - name: Check output
+#      run: "echo \"Last issue number is ${{ steps.issuenumber.outputs.issuenumber }}\""
