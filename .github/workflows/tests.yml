@@ -19,7 +19,7 @@ jobs:
       with:
         fetch-depth: 9
         submodules: false
-    - uses: RobertoPrevato/GitHubActionLabTS1@master
+    - uses: RobertoPrevato/GitHubActionLabTS1@release/v1
       id: example
       with:
         milliseconds: 1000
