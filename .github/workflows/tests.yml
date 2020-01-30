@@ -23,5 +23,6 @@ jobs:
       id: example
       with:
         milliseconds: 1000
+        myToken: ${{ secrets.GITHUB_TOKEN }}
 #    - name: Check output
 #      run: "echo \"Last issue number is ${{ steps.issuenumber.outputs.issuenumber }}\""
