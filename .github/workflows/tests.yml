@@ -21,5 +21,7 @@ jobs:
         submodules: false
     - uses: RobertoPrevato/GitHubActionLabTS1@master
       id: example
+      with:
+        milliseconds: 1000
 #    - name: Check output
 #      run: "echo \"Last issue number is ${{ steps.issuenumber.outputs.issuenumber }}\""
