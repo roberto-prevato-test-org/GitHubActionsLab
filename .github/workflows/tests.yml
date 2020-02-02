@@ -6,13 +6,6 @@ on:
       - master
       - ci
   pull_request:
-    types:
-      - edited
-      - opened
-      - labeled
-      - unlabeled
-      - synchronize
-      - reopened
     branches:
       - '*'
 
