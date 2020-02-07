@@ -17,9 +17,25 @@ on:
       - '*'
 
 jobs:
-  issuenumber-job:
+  check-commit-messages:
     runs-on: ubuntu-latest
     name: Check Commit Messages
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 9
+        submodules: false
+
+    - uses: RobertoPrevato/GitHubActionLabTS1@release/v1
+      id: example
+      with:
+        milliseconds: 1000
+        myToken: ${{ secrets.GITHUB_TOKEN }}
+
+  tests:
+    runs-on: ubuntu-latest
+    name: Tests
 
     steps:
     - uses: actions/checkout@v1
@@ -50,11 +66,3 @@ jobs:
     - name: Run tests
       run: |
         pytest
-
-    - uses: RobertoPrevato/GitHubActionLabTS1@release/v1
-      id: example
-      with:
-        milliseconds: 1000
-        myToken: ${{ secrets.GITHUB_TOKEN }}
-#    - name: Check output
-#      run: "echo \"Last issue number is ${{ steps.issuenumber.outputs.issuenumber }}\""
