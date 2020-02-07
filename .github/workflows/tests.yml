@@ -27,6 +27,11 @@ jobs:
         fetch-depth: 9
         submodules: false
 
+    - name: Use Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
     - uses: actions/cache@v1
       id: depcache
       with:
