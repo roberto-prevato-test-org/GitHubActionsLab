@@ -26,6 +26,26 @@ jobs:
       with:
         fetch-depth: 9
         submodules: false
+
+    - uses: actions/cache@v1
+      id: depcache
+      with:
+        path: deps
+        key: requirements-pip-${{ hashFiles('requirements.txt') }}
+
+    - name: Download dependencies
+      if: steps.depcache.outputs.cache-hit != 'true'
+      run: |
+        pip download --dest=deps -r requirements.txt
+
+    - name: Install Python deps
+      run: |
+        pip install -U --no-index --find-links=deps deps/*
+
+    - name: Run tests
+      run: |
+        pytest
+
     - uses: RobertoPrevato/GitHubActionLabTS1@release/v1
       id: example
       with:
