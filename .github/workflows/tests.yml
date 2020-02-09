@@ -16,6 +16,9 @@ on:
     branches:
       - '*'
 
+env:
+  PROJECT_NAME: example
+
 jobs:
   check-commit-messages:
     runs-on: ubuntu-latest
@@ -65,4 +68,13 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest
+        pytest --doctest-modules --junitxml=junit/pytest-results.xml --cov=$PROJECT_NAME --cov-report=xml tests/
+
+    - name: Cat coverage.xml
+      run: |
+        cat coverage.xml
+
+    - name: Upload coverage to codecov,io
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
